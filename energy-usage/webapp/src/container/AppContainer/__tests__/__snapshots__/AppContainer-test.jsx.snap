@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppContainer /> test Test snapshots of content 1`] = `
+<div>
+  Loading data...
+</div>
+`;
