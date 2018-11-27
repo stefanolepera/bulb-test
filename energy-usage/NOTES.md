@@ -6,7 +6,7 @@ Time: 2h for the first task, 1:30h for the third, then spent an additional hour 
 
 Notes:
 My approach was at first investigating about how to divide the application (I ended up having a single main container <AppContainer/> as a stateful component and two stateless components <Chart/> and <Table/>).
-I thought about dividing even more (ie having a <Title> component for the <h2/> title for both the stateless components) but it was a bit of an overkill given the task.
+I thought about dividing even more (IE: having a <Title> component for the h2 title for both the stateless components) but it was a bit of an overkill given the task.
 On a much more complex application I think is useful to procede with an atomic design having small and reusable presentational components.
 I've then added the Axios library for the API call (which I like way more than fetch) and put that on the componentDidMount of the <AppContainer/> to set the state of the application.
 In a real world example that uses Redux, that should live in a Thunk or another MiddleWare (redux-saga, redux-observable, etc).
