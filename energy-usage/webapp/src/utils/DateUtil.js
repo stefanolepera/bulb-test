@@ -2,7 +2,7 @@ import moment from 'moment';
 /**
  * Check whether a moment object is the end of the month.
  * Ignore the time part.
- * @param {moment} mmt
+ * @param {string} mmt
  * @returns {boolean}
  */
 export const isEndOfMonth = mmt =>
@@ -18,23 +18,30 @@ export const isEndOfMonth = mmt =>
 
 /**
  * Returns the difference between two moment objects in number of days.
- * @param {moment} mmt1
- * @param {moment} mm2
+ * @param {string} mmt1
+ * @param {string} mm2
  * @returns {number}
  */
-export const getDiffInDays = (mmt1, mm2) => mmt1.diff(mm2, 'days');
+export const getDiffInDays = (mmt1, mm2) => moment.utc(mmt1).diff(mm2, 'days');
 
 /**
  * Return the number of days between the given moment object
  * and the end of the month of this moment object.
- * @param {moment} mmt
+ * @param {string} mmt
  * @return {number}
  */
 export const getDaysUntilMonthEnd = mmt => getDiffInDays(moment.utc(mmt).endOf('month'), mmt);
 
 /**
- * Return the formatted date for the given moment object
+ * Return the formatted date for the given moment object YYYY-MM-DD
  * @param {string} date
  * @return {string}
  */
-export const formatDate = date => moment.utc(date).format('YYYY-MM-DD');
+export const formatDateYMD = date => moment.utc(date).format('YYYY-MM-DD');
+
+/**
+ * Return the formatted date for the given moment object MMM, YYYY
+ * @param {string} date
+ * @return {string}
+ */
+export const formatDateMY = date => moment.utc(date).format('MMM, YYYY');

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { formatDate } from '../../utils/DateUtil';
+import { formatDateYMD } from '../../utils/DateUtil';
 
 const Table = ({ meterReadings }) => (
   <div>
@@ -14,7 +14,7 @@ const Table = ({ meterReadings }) => (
         </tr>
         {meterReadings.map(reading => (
           <tr key={reading.readingDate}>
-            <td>{formatDate(reading.readingDate)}</td>
+            <td>{formatDateYMD(reading.readingDate)}</td>
             <td>{reading.cumulative}</td>
             <td>{reading.unit}</td>
           </tr>

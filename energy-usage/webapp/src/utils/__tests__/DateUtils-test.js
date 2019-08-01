@@ -1,10 +1,9 @@
-import moment from 'moment';
-import { isEndOfMonth, getDiffInDays, getDaysUntilMonthEnd, formatDate } from '../DateUtil';
+import { isEndOfMonth, getDiffInDays, getDaysUntilMonthEnd, formatDateYMD, formatDateMY } from '../DateUtil';
 
 const diff = 3;
 const dates = {
-  date1: moment('2017-03-31T00:00:00.000Z'),
-  date2: moment('2017-03-28T00:00:00.000Z'),
+  date1: '2017-03-31T00:00:00.000Z',
+  date2: '2017-03-28T00:00:00.000Z',
 };
 
 describe('DateUtils test', () => {
@@ -32,12 +31,24 @@ describe('DateUtils test', () => {
     expect(getDaysUntilMonthEnd(dates.date2)).toEqual(diff);
   });
 
-  it('formatDate should return a string', () => {
-    expect(typeof formatDate(dates.date2)).toBe('string');
+  it('formatDateYMD should return a string', () => {
+    expect(typeof formatDateYMD(dates.date2)).toBe('string');
   });
 
-  it('formatDate should return a formatted date containing year-month-day', () => {
-    expect(formatDate(dates.date2).split('-').length).toEqual(diff);
+  it('formatDateYMD should return a formatted date containing year-month-day', () => {
+    expect(formatDateYMD(dates.date2).split('-').length).toEqual(diff);
+  });
+
+  it('formatDateMY should return a string', () => {
+    expect(typeof formatDateMY(dates.date1)).toBe('string');
+  });
+
+  it('formatDateMY should return a formatted date containing only month and year', () => {
+    expect(formatDateMY(dates.date1).split(',').length).toEqual(2);
+  });
+
+  it('formatDateMY should return a formatted month containing only 3 chars', () => {
+    expect(formatDateMY(dates.date1).split(',')[0]).toHaveLength(3);
   });
 });
 

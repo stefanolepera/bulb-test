@@ -1,8 +1,8 @@
 import React from 'react';
-import Axios from 'axios';
 import Chart from '../../components/Chart';
 import Table from '../../components/Table';
-import { getEstimateEnergyUsage } from '../../utils/EnergyUsageConverter';
+import fetchData from '../../utils/Network';
+import { fetchResolve, fetchReject } from '../../utils/StateChange';
 
 class AppContainer extends React.Component {
   constructor(props) {
@@ -16,13 +16,17 @@ class AppContainer extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get('https://storage.googleapis.com/bulb-interview/meterReadingsReal.json')
-      .then(res => this.setState({
-        meterReadings: res.data.electricity,
-        energyUsageData: getEstimateEnergyUsage(res.data.electricity),
-        isDataLoaded: res !== undefined,
-      }))
-      .catch(err => this.setState({ isDataError: err !== undefined }));
+    fetchData()
+      .then(res => this.handleFetchResolve(res))
+      .catch(err => this.handleFetchReject(err));
+  }
+
+  handleFetchResolve(res) {
+    this.setState(fetchResolve(res));
+  }
+
+  handleFetchReject(err) {
+    this.setState(fetchReject(err));
   }
 
   render() {
